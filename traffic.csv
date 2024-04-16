@@ -1,4 +1,4 @@
-date,l_ipn,r_asn,f
+date,origin,destination,count
 2006-07-01,0,701,1
 2006-07-01,0,714,1
 2006-07-01,0,1239,1
