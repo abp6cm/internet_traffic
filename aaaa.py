@@ -1,12 +1,15 @@
 #! /usr/bin/env python3
 """
-four maps:
-1) Local IP to ASN (all and bad connections)
-2) ASN points(all and bad connections)
+This document contains four visualizations. Three are graphs of the United States and one bar graph. 
+The first is a graph connecting local IP addresses (which are anonymous so are kept outside of the US boarder)
+to ASNs via a dataset of connections spanning over three months.
+The next is also a graph of the United States, but just the specified connections that are considered "bad".
+The bar graph shows how many bad connections there are by local IP address.
+The previous three graophs are all connected by local IP, so when hovering over any graph, the other two will change
+in accordance with it.
 
-two bar graphs:
-1) # bad connections while on (1)
-2) # bad connections while on (2) 
+The last graph of the United States is just the ASN locations and the size of the dots is the size of how many connections
+to it there are.
 """
 import altair as alt
 from vega_datasets import data
