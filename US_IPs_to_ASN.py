@@ -18,7 +18,7 @@ from vega_datasets import data
 def run():
 
     uscities = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/ASN_locations.csv"
-    uscities2 = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_locatio.csv"
+    uscities2 = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"
     traffic = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/traffic.csv"
     just_bad_traffic = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/bad_traffic.csv"
 
