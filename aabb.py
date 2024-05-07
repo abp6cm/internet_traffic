@@ -1,12 +1,6 @@
 #! /usr/bin/env python3
 """
-four maps:
-1) Local IP to ASN (all and bad connections)
-2) ASN points(all and bad connections)
 
-two bar graphs:
-1) # bad connections while on (1)
-2) # bad connections while on (2) 
 """
 import altair as alt
 from vega_datasets import data
