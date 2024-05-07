@@ -1,13 +1,7 @@
 """
-Multiple Interactions
-=====================
-This example shows how multiple user inputs can be layered onto a chart. The four inputs have functionality as follows:
-
-* Dropdown: Filters the movies by genre
-* Radio Buttons: Highlights certain films by Worldwide Gross
-* Mouse Drag and Scroll: Zooms the x and y scales to allow for panning
-* Checkbox: Scales the marker size of big budget films
-
+Three interwined graphs are shown here, each connected to a bubble selector below. Because there was such a large range
+of connection nnumbers (1-730000), splitting them up made the most visual sense. The y axis is the ASN and x axis the number
+of connections. This is only bad traffic provided by our dataset.
 """
 # category: interactive charts
 import altair as alt
