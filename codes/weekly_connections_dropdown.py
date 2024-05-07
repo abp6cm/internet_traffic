@@ -18,7 +18,7 @@ def label_week(row):
     
 def run():    
     uscities = pd.read_csv("https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/ASN_locations.csv")
-    uscities2 = pd.read_csv("https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_locatio.csv")
+    uscities2 = pd.read_csv("https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv")
     traffic = pd.read_csv("https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/traffic.csv")
     just_bad_traffic = pd.read_csv("https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/bad_traffic.csv")
 
@@ -57,7 +57,7 @@ def run():
         title="Weekly Incoming Traffic Connections"
     )
 
-    (week_filtered_chart ).save('aabb.html')
+    (week_filtered_chart ).save('weekly_connections_dropdown.html')
 
 if __name__ == "__main__":
     run()

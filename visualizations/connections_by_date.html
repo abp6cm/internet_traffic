@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/counted_traffic_by_date_2.csv"}, "mark": {"type": "area"}, "encoding": {"x": {"field": "date", "scale": {"domain": {"param": "param_6"}}, "type": "temporal"}, "y": {"field": "total_connections", "type": "quantitative"}}, "height": 200, "width": 1250}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/counted_traffic_by_date.csv"}, "mark": {"type": "area"}, "encoding": {"x": {"field": "date", "type": "temporal"}, "y": {"field": "total_connections", "type": "quantitative"}}, "height": 60, "name": "view_11", "width": 1250}], "params": [{"name": "param_6", "select": {"type": "interval", "encodings": ["x"]}, "views": ["view_11"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

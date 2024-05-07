@@ -34,4 +34,4 @@ lower = base2.properties(
 ).add_params(brush)
 
 
-(upper & lower).save('cccc.html')
+(upper & lower).save('connections_by_date.html')

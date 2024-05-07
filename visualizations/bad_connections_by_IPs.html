@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"mark": {"type": "point", "filled": true}, "encoding": {"color": {"condition": {"param": "param_5", "field": "origin", "legend": null, "type": "nominal"}, "value": "clear"}, "tooltip": {"field": "Title", "type": "nominal"}, "x": {"field": "destination", "type": "quantitative"}, "y": {"field": "count", "type": "quantitative"}}, "height": 150, "name": "view_8", "title": "Source IP by ASN connections (less than 100)", "transform": [{"filter": {"field": "origin", "oneOf": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}}, {"filter": "(datum.count < 100)"}], "width": 1250}, {"mark": {"type": "point", "filled": true}, "encoding": {"color": {"condition": {"param": "param_5", "field": "origin", "legend": null, "type": "nominal"}, "value": "clear"}, "tooltip": {"field": "Title", "type": "nominal"}, "x": {"field": "destination", "type": "quantitative"}, "y": {"field": "count", "type": "quantitative"}}, "height": 150, "name": "view_9", "title": "Source IP by ASN connections (between 100 and 10,000)", "transform": [{"filter": {"field": "origin", "oneOf": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}}, {"filter": "(datum.count > 100)"}, {"filter": "(datum.count < 10000)"}], "width": 1250}, {"mark": {"type": "point", "filled": true}, "encoding": {"color": {"condition": {"param": "param_5", "field": "origin", "legend": null, "type": "nominal"}, "value": "clear"}, "tooltip": {"field": "Title", "type": "nominal"}, "x": {"field": "destination", "type": "quantitative"}, "y": {"field": "count", "type": "quantitative"}}, "height": 150, "name": "view_10", "title": "Source IP by ASN connections (more than 10,000)", "transform": [{"filter": {"field": "origin", "oneOf": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}}, {"filter": "(datum.count > 10000)"}], "width": 1250}], "data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/counted_bad_traffic_by_destination.csv"}, "params": [{"name": "param_5", "select": {"type": "point", "fields": ["origin"]}, "bind": {"input": "radio", "options": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], "name": "IP source"}, "views": ["view_8", "view_9", "view_10"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

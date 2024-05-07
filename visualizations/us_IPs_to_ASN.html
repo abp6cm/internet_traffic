@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "vconcat": [{"hconcat": [{"layer": [{"data": {"url": "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}, "projection": {"type": "albersUsa"}}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/traffic.csv"}, "mark": {"type": "rule", "opacity": 0.35}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "latitude2": {"field": "lat2"}, "longitude": {"field": "longitude", "type": "quantitative"}, "longitude2": {"field": "lon2"}}, "transform": [{"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}, {"lookup": "destination", "as": ["lat2", "lon2"], "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/ASN_locations.csv"}, "key": "ASN", "fields": ["latitude", "longitude"]}}, {"filter": {"param": "param_1", "empty": false}}]}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/traffic.csv"}, "mark": {"type": "circle"}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "longitude": {"field": "longitude", "type": "quantitative"}, "order": {"field": "outgoing_routes", "sort": "descending", "type": "quantitative"}, "size": {"field": "outgoing_routes", "legend": null, "scale": {"range": [0, 1000]}, "type": "quantitative"}, "tooltip": [{"field": "origin", "type": "nominal"}, {"field": "outgoing_routes", "type": "quantitative"}]}, "name": "view_1", "transform": [{"aggregate": [{"op": "count", "as": "outgoing_routes"}], "groupby": ["origin"]}, {"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}]}], "height": 450, "width": 600}, {"layer": [{"data": {"url": "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}, "projection": {"type": "albersUsa"}}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/bad_traffic.csv"}, "mark": {"type": "rule", "color": "red", "opacity": 0.35}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "latitude2": {"field": "lat2"}, "longitude": {"field": "longitude", "type": "quantitative"}, "longitude2": {"field": "lon2"}}, "transform": [{"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}, {"lookup": "destination", "as": ["lat2", "lon2"], "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/ASN_locations.csv"}, "key": "ASN", "fields": ["latitude", "longitude"]}}, {"filter": {"param": "param_1", "empty": false}}]}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/bad_traffic.csv"}, "mark": {"type": "circle", "size": 2000}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "longitude": {"field": "longitude", "type": "quantitative"}, "order": {"field": "bad_outgoing_routes", "sort": "descending", "type": "quantitative"}, "size": {"field": "bad_outgoing_routes", "legend": null, "scale": {"range": [1, 2000]}, "type": "quantitative"}, "tooltip": [{"field": "origin", "type": "nominal"}, {"field": "bad_outgoing_routes", "type": "quantitative"}]}, "name": "view_2", "transform": [{"aggregate": [{"op": "count", "as": "bad_outgoing_routes"}], "groupby": ["origin"]}, {"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}]}], "height": 450, "width": 600}]}, {"hconcat": [{"layer": [{"data": {"url": "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}, "projection": {"type": "albersUsa"}}, {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/traffic.csv"}, "mark": {"type": "circle", "size": 20000}, "encoding": {"latitude": {"field": "latitude", "type": "quantitative"}, "longitude": {"field": "longitude", "type": "quantitative"}, "order": {"field": "incoming_routes", "sort": "descending", "type": "quantitative"}, "size": {"field": "incoming_routes", "legend": null, "scale": {"range": [1, 2000]}, "type": "quantitative"}, "tooltip": [{"field": "destination", "type": "nominal"}, {"field": "incoming_routes", "type": "quantitative"}]}, "name": "view_3", "transform": [{"aggregate": [{"op": "count", "as": "incoming_routes"}], "groupby": ["destination"]}, {"lookup": "destination", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/ASN_locations.csv"}, "key": "ASN", "fields": ["latitude", "longitude"]}}]}], "height": 450, "width": 600}, {"layer": [{"mark": {"type": "bar"}, "encoding": {"text": {"field": "total_bad_connections", "type": "quantitative"}, "x": {"field": "total_bad_connections", "type": "quantitative"}, "y": {"field": "origin", "type": "nominal"}}, "transform": [{"aggregate": [{"op": "count", "as": "total_bad_connections"}], "groupby": ["origin"]}, {"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}]}, {"mark": {"type": "text", "align": "left", "dx": 2}, "encoding": {"text": {"field": "total_bad_connections", "type": "quantitative"}, "x": {"field": "total_bad_connections", "type": "quantitative"}, "y": {"field": "origin", "type": "nominal"}}, "transform": [{"aggregate": [{"op": "count", "as": "total_bad_connections"}], "groupby": ["origin"]}, {"lookup": "origin", "from": {"data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/origin_IP_location.csv"}, "key": "origin_IP", "fields": ["latitude", "longitude"]}}, {"filter": {"param": "param_1", "empty": false}}]}], "data": {"url": "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/bad_traffic.csv"}}]}], "params": [{"name": "param_1", "select": {"type": "point", "fields": ["origin"], "nearest": true, "on": "pointerover"}, "views": ["view_1", "view_2"]}, {"name": "param_2", "select": {"type": "point", "fields": ["destination"], "nearest": true, "on": "pointerover"}, "views": ["view_3"]}], "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json"};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

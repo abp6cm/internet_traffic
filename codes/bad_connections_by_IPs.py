@@ -1,14 +1,13 @@
 """
 Three interwined graphs are shown here, each connected to a bubble selector below. Because there was such a large range
 of connection nnumbers (1-730000), splitting them up made the most visual sense. The y axis is the ASN and x axis the number
-of connections. This is all traffic provided by our dataset.
-
+of connections. This is only bad traffic provided by our dataset.
 """
 # category: interactive charts
 import altair as alt
 from vega_datasets import data
 
-source = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/counted_traffic_by_destination.csv"
+source = "https://cdn.jsdelivr.net/gh/abp6cm/internet_traffic@main/counted_bad_traffic_by_destination.csv"
 
 
 IP_sources = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -89,4 +88,4 @@ highlight_ratings3 = base.add_params(
     color=rating_color_condition
 ).properties(title="Source IP by ASN connections (more than 10,000)")
 
-(highlight_ratings2 & highlight_ratings & highlight_ratings3).save('bbbb.html')
+(highlight_ratings2 & highlight_ratings & highlight_ratings3).save('bad_connections_by_IPs.html')
